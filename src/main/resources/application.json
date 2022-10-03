@@ -1,20 +1,35 @@
 {
   "port": 8080,
-  "servers": {
-    "source": {
-      "index": "index.html",
-      "error": {
-        "403": "/403.html",
-        "404": "/404.html",
-        "500": "/500.html"
+  "numTreads": 50,
+  "index": "static/index.html",
+  "servers": [
+    {
+      "domain": "www.a.com",
+      "errors": {
+        "403": "static/a/error/403.html",
+        "404": "static/a/error/404.html",
+        "500": "static/a/error/500.html"
+      }
+    },
+    {
+      "domain": "www.b.com",
+      "errors": {
+        "403": "static/b/error/403.html",
+        "404": "static/b/error/404.html",
+        "500": "static/b/error/500.html"
       }
     }
-  },
-  "mapping": {
-    "/Hello": "Hello",
-    "/service.Hello": "Hello",
-    "/Greeting": "Hello",
-    "/super.Greeting": "service.Hello",
-    "/Time": "Time"
-  }
+  ],
+  "mappings": [
+    {
+      "name": "simple",
+      "router": {
+        "/Hello": "Hello",
+        "/service.Hello": "service.Hello",
+        "/Greeting": "Hello",
+        "/super.Greeting": "service.Hello",
+        "/Time": "Time"
+      }
+    }
+  ]
 }
