@@ -25,7 +25,7 @@
 1. HTTP_ROOT 디렉터리의 상위 디렉터리에 접근할 때 403 반환
 2. 확장자가 exe인 파일을 요청받았을 때 403 반환
 3. 추후 규칙을 추가할 것을 고려하여 로직 분리
-> HttpValidator > validate403
+> HttpValidator -> validate403
 ```
 #### 5. logback 프레임워크를 이용한 로깅 작업
 ```
@@ -38,8 +38,8 @@
 ```
 1. URL을 SimpleServlet 구현체로 매핑
 > simple.service.Hello, simple.Hello 
-2. 설정 파일을 이용한 매핑 구현 (
-> application.json > mappings array
+2. 설정 파일을 이용한 매핑 구현
+> application.json -> mappings array
 > /Greeting, /super.Greeting
 ```
 #### 7. 현재 시각을 출력하는 SimpleServlet 구현체 작성
