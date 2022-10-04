@@ -25,8 +25,8 @@ public class HttpRequest {
     private String file;
     private Map<String, String> parameters = new HashMap<>();
 
-    public void setHost(String host) {
-        this.host = host;
+    public void setFile(String file) {
+        this.file = file;
     }
 
     public void parse(InputStream in, String index) {
@@ -36,7 +36,8 @@ public class HttpRequest {
         try {
              BufferedReader br = new BufferedReader(new InputStreamReader(in));
              for (int i=0; i<2; i++) {
-                 headers.add(br.readLine());
+                 String line = br.readLine();
+                 if (line != null) headers.add(line);
              }
         } catch (IOException ioe) {
             log.error("Http header get Error: {}", ioe.getMessage(), ioe);

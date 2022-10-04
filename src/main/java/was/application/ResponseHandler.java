@@ -31,23 +31,23 @@ public class ResponseHandler {
         return server;
     }
 
-    public static void failure(Socket connection, HttpRequest request, Setting setting, int code) {
+    public static void failure(Socket connection, HttpRequest request, Setting setting, int errorCode) {
         Server server = getServer(request, setting);
 
         // 과제에서 제시하는 403, 404 코드만 별도 처리
         // 나머지 오류의 사용자(html) 노출은 500 페이지로 처리한다. 응답 코드는 받은 대로 리턴함..
-        if (HttpURLConnection.HTTP_FORBIDDEN == code || HttpURLConnection.HTTP_NOT_FOUND == code) {
-            write(connection, server.getErrors().get(Integer.toString(code)), code);
+        if (HttpURLConnection.HTTP_FORBIDDEN == errorCode || HttpURLConnection.HTTP_NOT_FOUND == errorCode) {
+            write(connection, server.getErrors().get(Integer.toString(errorCode)), errorCode);
         } else {
-            write(connection, server.getErrors().get(Integer.toString(HttpURLConnection.HTTP_INTERNAL_ERROR)), code);
+            write(connection, server.getErrors().get(Integer.toString(HttpURLConnection.HTTP_INTERNAL_ERROR)), errorCode);
         }
     }
 
-    public static void write(Socket connection, String file, int code) {
+    public static void write(Socket connection, String file, int errorCode) {
         try {
             // header
             Writer writer = new OutputStreamWriter(connection.getOutputStream());
-            writer.write("HTTP/1.1 " + code + "\r\n");
+            writer.write("HTTP/1.1 " + errorCode + "\r\n");
             writer.write("Date: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateFormat.DATE_TIME.getFormat())) + "\r\n");
             writer.write("Content-Type: text/html\r\n\r\n");
 

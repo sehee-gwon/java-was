@@ -1,6 +1,7 @@
 package was.application;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class WebConfig {
         try (InputStream in = loader.getResourceAsStream("application.json")) {
             String json = IOUtils.toString(in, StandardCharsets.UTF_8);
             ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);   // 매핑되지 않는 필드 무시
             this.setting = objectMapper.readValue(json, Setting.class);
         } catch (JsonProcessingException e) {
             log.error("Json parsing Error: {}", e.getMessage(), e);

@@ -38,9 +38,9 @@ public class RequestHandler implements Runnable {
             request.parse(in, this.setting.getIndex());
             log.debug("http request: {}", request);
 
-            // 빈 요청이나 파비콘은 스킵, Postman 에서 테스트시 요청을 2번 보냄...
+            // 빈 요청은 스킵, Postman 에서 테스트시 요청을 2번 보냄...
             // 첫번째 요청은 빈 값을 던져 서버가 살아있는지 확인하고, 두번째 요청에 값을 전송하는 것 같음
-            if (request.getMethod() == null || request.getFile().indexOf("favicon.ico") > -1) return;
+            if (request.getMethod() == null) return;
 
             // HTTP 유효성 검증 (403, 500)
             httpValidator.validate(request);

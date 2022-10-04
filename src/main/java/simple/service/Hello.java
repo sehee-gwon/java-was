@@ -13,7 +13,7 @@ public class Hello implements SimpleServlet {
     @Override
     public void service(HttpRequest request, HttpResponse response) throws IOException {
         Writer writer = response.getWriter();
-        writer.write("Service Hello, ");
+        writer.write("service.Hello, ");
         writer.write(request.getParameter("name"));
     }
 }

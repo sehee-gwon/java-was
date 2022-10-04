@@ -16,7 +16,7 @@ public class Time implements SimpleServlet {
     @Override
     public void service(HttpRequest request, HttpResponse response) throws IOException {
         Writer writer = response.getWriter();
-        LocalDateTime dateTime = LocalDateTime.now();
-        writer.write(dateTime.format(DateTimeFormatter.ofPattern(DateFormat.DATE_TIME.getFormat())));
+        writer.write("Time: ");
+        writer.write(LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateFormat.DATE_TIME.getFormat())));
     }
 }

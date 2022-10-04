@@ -49,5 +49,11 @@
 ```
 #### 8. JUnit4로 여러 스펙을 검증하는 테스트 케이스 작성
 ```
-미구현
+1-7 스펙별 테스트 케이스 구현
+1. RequestHandlerTest -> spec1Test
+2. WebConfigTest -> spec2Test
+3. RequestHandlerTest -> spec3Test
+4. HttpValidatorTest -> spec4Test
+6. RequestHandlerTest -> spec6Test
+7. RequestHandlerTest -> spec7Test
 ```
